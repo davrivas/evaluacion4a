@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:define name="title">Sucursales</ui:define>
+    <ui:define name="titulo-pagina"><span class="fa fa-building"></span> Sucursales</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <button class="btn btn-info mb-3" type="button" data-toggle="modal" data-target="#insertar">
+                            <span class="fa fa-plus"></span> Nueva sucursal
+                        </button>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <h:form prependId="false">
+                            <h:dataTable class="table table-striped" value="#{sucursalControlador.todasLasSucursales}" var="s">
+                                <h:column>
+                                    <f:facet name="header">ID</f:facet>
+                                        #{s.id}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Barrio</f:facet>
+                                    <h:panelGroup rendered="#{empty s.barrio}">
+                                        <em>Sin barrio</em>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{not empty s.barrio}">
+                                        #{s.barrio}
+                                    </h:panelGroup>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Dirección</f:facet>
+                                        #{s.direccion}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Telefono</f:facet>
+                                        #{s.telefonos}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Ciudad</f:facet>
+                                        #{s.ciudad.nombre}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Eliminar</f:facet>
+                                    <h:commandLink class="btn btn-danger">
+                                        <span class="fa fa-trash"></span>
+                                    </h:commandLink>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="modals">
+        <div class="modal fade" id="insertar" tabindex="-1" role="dialog" aria-labelledby="modalInsertarTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <h:panelGroup id="modalInsertarContenido" class="modal-content " layout="block">
+                    <h:form id="form-insert-sucursal" prependId="false">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalInsertarTitulo">Insertar sucursal</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row form-group ml-2 mr-2">
+                                <h:outputLabel value="Barrio" />
+                                <h:inputText class="form-control" a:placeholder="Ingrese barrio" value="#{administradorControlador.sucursal.barrio}"/>
+                            </div>
+                            <div class="row form-group ml-2 mr-2">
+                                <h:outputLabel value="Dirección" />
+                                <h:inputText class="form-control" a:required="" a:placeholder="Ingrese dirección" value="#{administradorControlador.sucursal.direccion}"/>
+                            </div>
+                            <div class="row form-group ml-2 mr-2">
+                                <h:outputLabel value="Telefonos" />
+                                <h:inputText class="form-control" a:required="" a:placeholder="Ingrese telefonos" value="#{administradorControlador.sucursal.telefonos}"/>
+                            </div>
+                            <div class="row form-group ml-2 mr-2">
+                                <h:outputLabel value="Ciudad" />
+                                <h:selectOneMenu class="form-control" a:required="" value="#{administradorControlador.sucursal.tblCiudadesCodigo}">
+                                    <f:selectItems value="#{administradorControlador.ciudades}" var="c" itemLabel="#{c.nombre}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <h:commandButton action="#{administradorControlador.registrarSucursal()}" class="btn btn-primary" value="Registrar sucursal" a:type="submit"/>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
