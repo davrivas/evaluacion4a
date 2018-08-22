@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarT" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <h:panelGroup id="modalEliminarC" class="modal-content" layout="block">
+                <h:form id="form-delete-sucursal" prependId="false">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEliminarT">Eliminar sucursal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Desea eliminar la sucursal?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <h:commandButton action="#{sucursalController.eliminarSucursal()}" class="btn btn-danger" value="Si"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </div>
+    </div>
+</ui:composition>
+

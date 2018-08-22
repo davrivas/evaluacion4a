@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.cristian.evaluacion4a.modelo.dao;
 
 import edu.cristian.evaluacion4a.modelo.entidades.Cuenta;
@@ -26,5 +20,7 @@ public interface CuentaFacadeLocal {
     List<Cuenta> findRange(int[] range);
 
     int count();
+    
+    Cuenta cuentaMasMovimientosUltimoMes();
 
 }

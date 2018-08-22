@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <div class="modal fade" id="insertar" tabindex="-1" role="dialog" aria-labelledby="modalInsertarT" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <h:panelGroup id="modalInsertarC" class="modal-content" layout="block">
+                <h:form id="form-insert-sucursal" prependId="false">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalInsertarT">Insertar sucursal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h:outputLabel value="Barrio" />
+                            <h:inputText class="form-control" a:placeholder="Ingrese barrio" value="#{sucursalController.nuevaSucursal.barrio}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Dirección" />
+                            <h:inputText class="form-control" a:required="" a:placeholder="Ingrese dirección" value="#{sucursalController.nuevaSucursal.direccion}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Telefonos" />
+                            <h:inputText class="form-control" a:required="" a:placeholder="Ingrese telefonos" value="#{sucursalController.nuevaSucursal.telefonos}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Ciudad" />
+                            <h:selectOneMenu class="form-control" a:required="" value="#{sucursalController.nuevaSucursal.ciudad}">
+                                <f:selectItems value="#{consultaController.todasLasCiudades}" var="c" itemLabel="#{c.nombre}"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <h:commandButton action="#{sucursalController.registrarSucursal()}" class="btn btn-info" value="Registrar sucursal" a:type="submit"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </div>
+    </div>
+</ui:composition>
+

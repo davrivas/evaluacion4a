@@ -8,21 +8,20 @@
     <ui:define name="title">Cuentas</ui:define>
     <ui:define name="titulo-pagina"><span class="fa fa-credit-card"></span> Cuentas</ui:define>
     <ui:define name="content">
-        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Todas las cuentas</h4>
                     </div>
                     <div class="content table-responsive table-full-width">
-                        <h:dataTable class="table table-striped" value="#{cuentaControlador.todasLasCuentas}" var="c">
+                        <h:dataTable class="table table-striped" value="#{consultaController.todasLasCuentas}" var="c">
                             <h:column>
                                 <f:facet name="header">ID</f:facet>
-                                #{c.id}
+                                <h:outputText value="#{c.id}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Número</f:facet>
-                                #{c.numero}
+                                <h:outputText value="#{c.numero}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Fecha de apertura</f:facet>
@@ -32,15 +31,15 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Saldo</f:facet>
-                                #{c.saldo}
+                                <h:outputText value="$#{c.saldo}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Estado</f:facet>
-                                #{c.estado}
+                                <h:outputText value="#{c.estado}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Sucursal</f:facet>
-                                #{c.sucursal.direccion} barrio #{c.sucursal.barrio}, #{c.sucursal.ciudad.nombre}
+                                <h:outputText value="#{c.sucursal.direccion} barrio #{c.sucursal.barrio}, #{c.sucursal.ciudad.nombre}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Tipo de cuenta</f:facet>
@@ -48,12 +47,11 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Usuario</f:facet>
-                                #{c.usuario.nombres} #{c.usuario.primerApellido} #{c.usuario.segundoApellido}
+                                <h:outputText value="#{c.usuario.nombres} #{c.usuario.primerApellido} #{c.usuario.segundoApellido}"/>
                             </h:column>
                         </h:dataTable>
                     </div>
                 </div>
             </div>
-        </div>
     </ui:define>
 </ui:composition>
